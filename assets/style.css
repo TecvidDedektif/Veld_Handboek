@@ -209,6 +209,13 @@ details.tr p, details.tr ul { margin: 0.4rem 0; }
 
 td .lcd { white-space: normal; }
 
+/* figuren */
+figure.plaat { margin: 1.5rem 0; }
+figure.plaat .platen { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.6rem; }
+figure.plaat .platen.drie { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+figure.plaat img { display: block; width: 100%; height: auto; border: 1px solid var(--lijn); border-radius: 6px; background: var(--papier); padding: 0.5rem; }
+figure.plaat figcaption { color: var(--grijs); font-size: 0.98rem; margin-top: 0.45rem; }
+
 /* stappen */
 ol.stappen { list-style: none; padding: 0; counter-reset: stap; }
 ol.stappen > li {

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 475" font-family="Barlow Semi Condensed, Barlow, Arial, sans-serif">
+  <title>Snoeren in de juiste bus: links spanning meten, rechts stroom meten</title>
+  <defs>
+    <g id="meter">
+      <rect x="0" y="0" width="210" height="330" rx="22" fill="#3d4750" stroke="#1b232b" stroke-width="3"/>
+      <rect x="18" y="18" width="174" height="74" rx="6" fill="#c9da72" stroke="#26330e" stroke-width="2"/>
+      <circle cx="105" cy="168" r="46" fill="#262d33" stroke="#1b232b" stroke-width="3"/>
+      <text x="40" y="128" font-size="18" fill="#ffffff" text-anchor="middle">V⎓</text>
+      <text x="105" y="110" font-size="18" fill="#ffffff" text-anchor="middle">Ω</text>
+      <text x="172" y="128" font-size="18" fill="#ffffff" text-anchor="middle">mA</text>
+      <text x="105" y="236" font-size="15" fill="#aab4bc" text-anchor="middle">OFF</text>
+      <circle cx="30" cy="290" r="13" fill="#11161a" stroke="#8d979f" stroke-width="2"/>
+      <circle cx="80" cy="290" r="13" fill="#11161a" stroke="#8d979f" stroke-width="2"/>
+      <circle cx="132" cy="290" r="13" fill="#11161a" stroke="#8d979f" stroke-width="2"/>
+      <circle cx="182" cy="290" r="13" fill="#11161a" stroke="#8d979f" stroke-width="2"/>
+    </g>
+    <!-- geel kousje, 48 breed, midden op x=24 -->
+    <g id="kous">
+      <rect x="0" y="0" width="48" height="24" rx="4" fill="#f3c300"/>
+      <rect x="0" y="0" width="4" height="24" fill="#000" opacity="0.14"/>
+      <rect x="44" y="0" width="4" height="24" fill="#000" opacity="0.14"/>
+    </g>
+  </defs>
+
+  <!-- ===== links: spanning ===== -->
+  <text x="185" y="34" font-size="26" font-weight="700" fill="#1b232b" text-anchor="middle">Spanning meten</text>
+  <g transform="translate(80,60)">
+    <use href="#meter"/>
+    <text x="105" y="70" font-family="Share Tech Mono, Consolas, monospace" font-size="38" fill="#26330e" text-anchor="middle">24.0 V</text>
+    <line x1="105" y1="168" x2="62" y2="134" stroke="#f3c300" stroke-width="7" stroke-linecap="round"/>
+    <text x="30" y="262" font-size="14" fill="#aab4bc" text-anchor="middle">A</text>
+    <text x="80" y="262" font-size="14" fill="#aab4bc" text-anchor="middle">mA µA</text>
+    <use href="#kous" x="108" y="245"/>
+    <text x="132" y="262" font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">COM</text>
+    <use href="#kous" x="158" y="245"/>
+    <text x="182" y="262" font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">V Ω</text>
+  </g>
+  <path d="M212,350 C212,405 172,415 142,442" fill="none" stroke="#1b232b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M262,350 C262,405 302,415 332,442" fill="none" stroke="#c62828" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="212" cy="350" r="8" fill="#1b232b"/>
+  <circle cx="262" cy="350" r="8" fill="#c62828"/>
+  <text x="128" y="464" font-size="18" font-weight="600" fill="#1b232b" text-anchor="middle">zwart</text>
+  <text x="344" y="464" font-size="18" font-weight="600" fill="#c62828" text-anchor="middle">rood</text>
+
+  <!-- ===== rechts: stroom ===== -->
+  <text x="575" y="34" font-size="26" font-weight="700" fill="#1b232b" text-anchor="middle">Stroom meten (4-20 mA)</text>
+  <g transform="translate(470,60)">
+    <use href="#meter"/>
+    <text x="105" y="70" font-family="Share Tech Mono, Consolas, monospace" font-size="38" fill="#26330e" text-anchor="middle">7.69 mA</text>
+    <line x1="105" y1="168" x2="148" y2="134" stroke="#f3c300" stroke-width="7" stroke-linecap="round"/>
+    <text x="30" y="262" font-size="14" fill="#aab4bc" text-anchor="middle">A</text>
+    <use href="#kous" x="56" y="245"/>
+    <text x="80" y="262" font-size="14" font-weight="700" fill="#1b232b" text-anchor="middle">mA µA</text>
+    <use href="#kous" x="108" y="245"/>
+    <text x="132" y="262" font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">COM</text>
+    <text x="182" y="262" font-size="14" fill="#aab4bc" text-anchor="middle">V Ω</text>
+  </g>
+  <path d="M550,350 C550,405 512,415 482,442" fill="none" stroke="#c62828" stroke-width="8" stroke-linecap="round"/>
+  <path d="M602,350 C602,405 640,415 670,442" fill="none" stroke="#1b232b" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="550" cy="350" r="8" fill="#c62828"/>
+  <circle cx="602" cy="350" r="8" fill="#1b232b"/>
+  <text x="470" y="464" font-size="18" font-weight="600" fill="#c62828" text-anchor="middle">rood</text>
+  <text x="684" y="464" font-size="18" font-weight="600" fill="#1b232b" text-anchor="middle">zwart</text>
+</svg>

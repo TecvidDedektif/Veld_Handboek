@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="262 0 252 340" font-family="Barlow Semi Condensed, Barlow, Arial, sans-serif">
+  <title>Stroom meten in serie in drie stappen: draad los, pen op de klem, pen op de draad</title>
+  <defs>
+    <!-- wijzende hand, vingertop op (60,12.5), wijst naar rechts -->
+    <g id="hand" stroke="#1b232b" stroke-width="2.5" stroke-linejoin="round">
+      <rect x="0" y="9" width="11" height="26" rx="2" fill="#255a8a"/>
+      <rect x="9" y="6" width="25" height="30" rx="7" fill="#ffffff"/>
+      <rect x="28" y="7" width="33" height="11" rx="5.5" fill="#ffffff"/>
+      <rect x="27" y="18" width="12" height="6" rx="3" fill="#ffffff"/>
+      <rect x="27" y="24" width="11" height="6" rx="3" fill="#ffffff"/>
+      <rect x="26" y="30" width="10" height="6" rx="3" fill="#ffffff"/>
+      <rect x="14" y="0" width="16" height="9" rx="4.5" fill="#ffffff" transform="rotate(18 22 4.5)"/>
+    </g>
+    <!-- klemmenblok, opening boven op (50,0) -->
+    <g id="klem">
+      <rect x="0" y="0" width="100" height="92" rx="6" fill="#dfe4e7" stroke="#1b232b" stroke-width="3"/>
+      <rect x="40" y="-2" width="20" height="12" rx="2" fill="#1b232b"/>
+      <circle cx="50" cy="40" r="15" fill="#c3cacf" stroke="#1b232b" stroke-width="2.5"/>
+      <line x1="40" y1="40" x2="60" y2="40" stroke="#1b232b" stroke-width="3"/>
+      <line x1="0" y1="92" x2="100" y2="92" stroke="#1b232b" stroke-width="3"/>
+    </g>
+    <!-- kleine meter -->
+    <g id="meter">
+      <rect x="0" y="0" width="96" height="62" rx="9" fill="#3d4750" stroke="#1b232b" stroke-width="2.5"/>
+      <rect x="8" y="8" width="80" height="34" rx="4" fill="#c9da72"/>
+      <circle cx="30" cy="52" r="4" fill="#c62828"/>
+      <circle cx="66" cy="52" r="4" fill="#1b232b"/>
+    </g>
+    <g id="nr">
+      <rect x="0" y="0" width="36" height="30" rx="4" fill="#f3c300"/>
+      <rect x="0" y="0" width="5" height="30" fill="#000" opacity="0.14"/>
+      <rect x="31" y="0" width="5" height="30" fill="#000" opacity="0.14"/>
+    </g>
+    <marker id="pijl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#255a8a"/>
+    </marker>
+  </defs>
+
+  <!-- ====================== STAP 1 ====================== -->
+  <g transform="translate(0,0)">
+    <use href="#nr" x="10" y="10"/>
+    <text x="28" y="32" font-size="20" font-weight="700" fill="#1b232b" text-anchor="middle">1</text>
+    <!-- draad omhoog getrokken -->
+    <line x1="120" y1="0" x2="120" y2="110" stroke="#2f6db5" stroke-width="12"/>
+    <line x1="120" y1="110" x2="120" y2="130" stroke="#c98a3c" stroke-width="5" stroke-linecap="round"/>
+    <line x1="152" y1="140" x2="152" y2="70" stroke="#255a8a" stroke-width="4" marker-end="url(#pijl)"/>
+    <use href="#klem" x="70" y="170"/>
+    <!-- hand wijst naar de schroef -->
+    <use href="#hand" transform="translate(196,197.5) scale(-1,1)"/>
+    <text x="120" y="310" font-size="21" font-weight="700" fill="#1b232b" text-anchor="middle">Schroef los,</text>
+    <text x="120" y="333" font-size="21" font-weight="700" fill="#1b232b" text-anchor="middle">draad eruit</text>
+  </g>
+
+  <!-- ====================== STAP 2 ====================== -->
+  <g transform="translate(265,0)">
+    <use href="#nr" x="10" y="10"/>
+    <text x="28" y="32" font-size="20" font-weight="700" fill="#1b232b" text-anchor="middle">2</text>
+    <!-- losse draad opzij -->
+    <path d="M120,0 C120,60 190,60 200,104" fill="none" stroke="#2f6db5" stroke-width="12"/>
+    <line x1="201" y1="104" x2="203" y2="124" stroke="#c98a3c" stroke-width="5" stroke-linecap="round"/>
+    <use href="#klem" x="70" y="170"/>
+    <!-- meter -->
+    <use href="#meter" x="12" y="54"/>
+    <text x="60" y="84" font-family="Share Tech Mono, Consolas, monospace" font-size="20" fill="#26330e" text-anchor="middle">- - -</text>
+    <!-- rode pen in de klem -->
+    <path d="M42,106 C40,140 70,140 84,150" fill="none" stroke="#c62828" stroke-width="5"/>
+    <line x1="84" y1="150" x2="112" y2="164" stroke="#c62828" stroke-width="10" stroke-linecap="round"/>
+    <line x1="112" y1="164" x2="120" y2="170" stroke="#8d979f" stroke-width="4" stroke-linecap="round"/>
+    <!-- hand wijst naar de pentip -->
+    <use href="#hand" transform="translate(190,158) scale(-1,1)"/>
+    <text x="120" y="310" font-size="21" font-weight="700" fill="#1b232b" text-anchor="middle">Eén pen</text>
+    <text x="120" y="333" font-size="21" font-weight="700" fill="#1b232b" text-anchor="middle">in de lege klem</text>
+  </g>
+
+  <!-- ====================== STAP 3 ====================== -->
+  <g transform="translate(530,0)">
+    <use href="#nr" x="10" y="10"/>
+    <text x="28" y="32" font-size="20" font-weight="700" fill="#1b232b" text-anchor="middle">3</text>
+    <path d="M120,0 C120,60 190,60 200,104" fill="none" stroke="#2f6db5" stroke-width="12"/>
+    <line x1="201" y1="104" x2="203" y2="124" stroke="#c98a3c" stroke-width="5" stroke-linecap="round"/>
+    <use href="#klem" x="70" y="170"/>
+    <use href="#meter" x="12" y="54"/>
+    <text x="60" y="83" font-family="Share Tech Mono, Consolas, monospace" font-size="19" fill="#26330e" text-anchor="middle">7.69mA</text>
+    <!-- rode pen in de klem -->
+    <path d="M42,106 C40,140 70,140 84,150" fill="none" stroke="#c62828" stroke-width="5"/>
+    <line x1="84" y1="150" x2="112" y2="164" stroke="#c62828" stroke-width="10" stroke-linecap="round"/>
+    <line x1="112" y1="164" x2="120" y2="170" stroke="#8d979f" stroke-width="4" stroke-linecap="round"/>
+    <!-- zwarte pen op de draad -->
+    <path d="M78,106 C92,128 132,126 150,112" fill="none" stroke="#1b232b" stroke-width="5"/>
+    <line x1="150" y1="112" x2="184" y2="122" stroke="#1b232b" stroke-width="10" stroke-linecap="round"/>
+    <line x1="184" y1="122" x2="198" y2="124" stroke="#8d979f" stroke-width="4" stroke-linecap="round"/>
+    <!-- hand wijst omhoog naar het contact -->
+    <use href="#hand" transform="translate(188.5,194) rotate(-90)"/>
+    <text x="120" y="310" font-size="21" font-weight="700" fill="#1b232b" text-anchor="middle">Andere pen op de</text>
+    <text x="120" y="333" font-size="21" font-weight="700" fill="#1b232b" text-anchor="middle">draad: aflezen</text>
+  </g>
+</svg>
