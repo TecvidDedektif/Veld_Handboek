@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veldhandboek</title>
+  <meta name="description" content="Persoonlijk veldhandboek: meten en storingzoeken in de telemetrie.">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/zoek.js" defer></script>
+</head>
+<body>
+  <main class="wrap">
+    <header class="held">
+      <h1>Veldhandboek</h1>
+      <p class="onder">Meten en storingzoeken in de telemetrie. Stap voor stap, met de waarden die je moet zien.</p>
+
+      <form class="zoek" role="search" onsubmit="return false">
+        <label for="zoekveld">Waar loop je tegenaan?</label>
+        <input id="zoekveld" type="search" autocomplete="off" enterkeyhint="search"
+               placeholder="bijv. ufc 400 klantsignaal testen met fluke">
+      </form>
+    </header>
+
+    <ul class="resultaten" id="resultaten" aria-live="polite"></ul>
+
+    <p class="voet">
+      Persoonlijke naslag. Alleen algemene informatie: geen adressen, IP-adressen, klantnamen of tekeningen.
+      Controleer altijd de documentatie van de fabrikant.
+    </p>
+  </main>
+</body>
+</html>

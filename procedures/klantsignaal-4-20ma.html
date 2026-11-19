@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Klantsignaal 4-20 mA: storing zoeken · Veldhandboek</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/reken.js" defer></script>
+</head>
+<body>
+  <nav class="balk"><div class="wrap"><a class="thuis" href="../index.html">Veldhandboek</a></div></nav>
+
+  <main class="wrap">
+    <header class="kopblok">
+      <h1>Klantsignaal 4-20 mA: storing zoeken</h1>
+      <p class="keten">Flowmeter KROHNE UFC 400 (OPTISONIC 3400) → signaalscheider (Phoenix Contact MINI MCR-SL-UI-2I) → klant</p>
+
+      <div class="status">
+        <strong>Praktijkgeval, november 2026.</strong>
+        De klant ontving geen 4-20 mA. Met een simulator op de ingang van de signaalscheider kwam het signaal wél aan.
+        Het probleem zit dus tussen flowmeter en signaalscheider. <strong>Oorzaak: nog niet vastgesteld.</strong>
+        De uitkomst wordt hier toegevoegd.
+      </div>
+
+      <details class="inhoud">
+        <summary>Inhoud</summary>
+        <ol>
+          <li><a href="#keten">Signaalketen en meetpunten</a></li>
+          <li><a href="#veiligheid">Veiligheid</a></li>
+          <li><a href="#principe">Principe in het kort</a></li>
+          <li><a href="#stappen">Stappen</a></li>
+          <li><a href="#wat-als">Wat als…</a></li>
+          <li><a href="#rekenen">Verwachte stroom</a></li>
+          <li><a href="#scheider">Signaalscheider: DIP-schakelaars</a></li>
+          <li><a href="#fluke">Fluke 179 in het kort</a></li>
+          <li><a href="#les">Les geleerd</a></li>
+          <li><a href="#bronnen">Bronnen</a></li>
+        </ol>
+      </details>
+    </header>
+
+    <!-- ===================================================== -->
+    <h2 id="keten">Signaalketen en meetpunten</h2>
+    <p>Werk van de bron naar de klant. Elk geel kousje is een meetpunt dat in de stappen terugkomt.</p>
+
+    <div class="keten-schema" role="img" aria-label="Flowmeter, kabel, signaalscheider, klemmenstrook, klant, met meetpunten M1 tot M4">
+      <div class="blok"><b>Flowmeter</b><span>UFC 400, stroomuitgang klem A / A-</span></div>
+      <div class="draad"><span class="kous">M1</span></div>
+      <div class="blok"><b>Kabel</b><span>naar de kast</span></div>
+      <div class="draad"><span class="kous">M2</span></div>
+      <div class="blok"><b>Signaalscheider</b><span>ingang → uitgang</span><span class="kous">M3 voeding</span></div>
+      <div class="draad"><span class="kous">M4</span></div>
+      <div class="blok"><b>Klant</b><span>via de klemmenstrook</span></div>
+    </div>
+
+    <div class="tabel">
+      <table>
+        <tr><th>Meetpunt</th><th>Wat</th><th>Hoe</th></tr>
+        <tr><td><span class="kous">M1</span></td><td>Uitgang van de flowmeter, klem A / A-</td><td>Spanning, of stroom met draden los</td></tr>
+        <tr><td><span class="kous">M2</span></td><td>Ingang van de signaalscheider</td><td>Stroom, in serie</td></tr>
+        <tr><td><span class="kous">M3</span></td><td>Voeding van de signaalscheider</td><td>Spanning, niets losmaken</td></tr>
+        <tr><td><span class="kous">M4</span></td><td>Uitgang naar de klant, op de klemmenstrook</td><td>Stroom, in serie</td></tr>
+      </table>
+    </div>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>Sinyal sayaçtan çıkıyor, kablodan geçiyor, sinyal ayırıcıdan geçip müşteriye gidiyor. Kaynaktan müşteriye doğru ölçerek ilerle. Sinyalin kaybolduğu nokta arızanın yeridir.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="veiligheid">Veiligheid</h2>
+    <div class="gevaar">
+      <strong>Eerst dit</strong>
+      <ul>
+        <li><b>Meld het de klant</b> voordat je een lus opent of simuleert. Hun signaal valt weg of staat vast.</li>
+        <li>De converter werkt op <b>100–230 V AC</b>. In de aansluitkast zitten ook netklemmen. Maak spanningsloos voordat je herbedraadt.</li>
+        <li>Rood snoer in de <b>mA-ingang</b> van de Fluke is bijna een kortsluiting. Nooit parallel over een spanning, zoals de 24 V-voeding. De zekering is 440 mA.</li>
+        <li>Klaar met stroom meten? <b>Rood snoer direct terug naar V.</b></li>
+        <li>Pas de <span class="lcd">4mA trimming</span> en <span class="lcd">20mA trimming</span> niet aan. Dat is de kalibratie van de uitgang.</li>
+      </ul>
+    </div>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <ul>
+        <li>Loop'u açmadan ya da simülasyon yapmadan önce müşteriye haber ver.</li>
+        <li>Problar mA'deyken asla gerilime (24 V'a) dokunma; sigorta atar. Ölçüm bitince kırmızı probu V'ye geri tak.</li>
+        <li>Trimming değerlerine dokunma.</li>
+      </ul>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="principe">Principe in het kort</h2>
+    <ul>
+      <li><b>Spanning is druk.</b> Je meet over twee punten, <b>parallel</b>. Niets losmaken.</li>
+      <li><b>Stroom is debiet.</b> De stroom moet door de meter, dus je meet <b>in serie</b>: draad los, meter ertussen.</li>
+      <li><b>Live zero.</b> 4 mA is 0 % van het bereik, 20 mA is 100 %. Meet je 0 mA, dan is er geen signaal: draadbreuk, geen voeding of de uitgang stuurt niet.</li>
+      <li><b>Actief of passief.</b> Een actieve uitgang levert zelf de lusspanning (bij de UFC 400 intern 24 V). Een passieve uitgang heeft een externe voeding nodig. De stroomingang van de signaalscheider is passief, dus de uitgang van de flowmeter moet hier actief zijn.</li>
+    </ul>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>Gerilim = basınç: iki noktaya dokunursun. Akım = debi: teli söküp metreyi araya koyarsın. 4 mA = sıfır debi; 0 mA = sinyal yok (kablo kopuk ya da besleme yok). Ayırıcının girişi pasif olduğu için sayacın çıkışı aktif olmalı.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="stappen">Stappen</h2>
+    <p>Van weinig ingrijpend naar meer ingrijpend. Stop zodra je de fout hebt gevonden.</p>
+
+    <ol class="stappen">
+      <li class="nul">
+        <h3>Klopt je informatie wel?</h3>
+        <ul>
+          <li>Lees het serienummer van het typeplaatje en zoek het op in <a href="https://pick.krohne.com">KROHNE PICK</a>. Je ziet de echte uitvoering: welke klemmen, actieve of passieve stroomuitgang, handleidingen en video's.</li>
+          <li>Werk je met PACTware? Eerst <b>Load from device</b>, dan pas beoordelen of printen. Een lege serienummer en standaardteksten als „HART MESSAGE” betekenen dat je naar offline standaardwaarden kijkt.</li>
+        </ul>
+      </li>
+
+      <li>
+        <h3>Instellingen in de converter bekijken</h3>
+        <p>Menu openen: houd <span class="lcd">&gt;</span> ongeveer 2,5 s ingedrukt. Met <span class="lcd">▼</span> <span class="lcd">▲</span> bladeren, <span class="lcd">&gt;</span> erin, <span class="lcd">↵</span> terug. Alleen kijken, niets wijzigen.</p>
+        <div class="tabel">
+          <table>
+            <tr><th>Menu</th><th>Wat je moet zien</th></tr>
+            <tr><td><span class="lcd">C2.1 hardware</span></td><td>Klem A = <span class="lcd">current output</span></td></tr>
+            <tr><td><span class="lcd">C2.2 current out A</span> → <span class="lcd">range 0%...100%</span></td><td><span class="lcd">04.0...20.0 mA</span></td></tr>
+            <tr><td><span class="lcd">C2.2 current out A</span> → <span class="lcd">range</span></td><td>Het debietbereik, bijv. <span class="lcd">0.00...250.00 m³/h</span>. Noteer dit.</td></tr>
+            <tr><td><span class="lcd">C2.2 current out A</span> → <span class="lcd">polarity</span></td><td>Welke richting telt mee (zie Wat als…)</td></tr>
+          </table>
+        </div>
+        <p>Menunummers kunnen per uitvoering verschillen. Volg de namen.</p>
+        <p>Reken de verwachte stroom uit met het debiet op het display: <a href="#rekenen">rekenmachine</a>.</p>
+      </li>
+
+      <li>
+        <h3>Voeding van de signaalscheider meten <span class="kous">M3</span></h3>
+        <p>Fluke op <b>V⎓</b>, rood in <b>V</b>, zwart in <b>COM</b>. Volgens de datasheet: klem 7 (+) en klem 8 (−).</p>
+        <div class="uitkomst"><p>Verwacht: ongeveer <b>24 V DC</b>. Geen voeding? Dan stopt het hier: zoek eerst de voeding.</p></div>
+      </li>
+
+      <li>
+        <h3>Spanning over de uitgang van de flowmeter <span class="kous">M1</span></h3>
+        <p>Fluke op <b>V⎓</b>, op klem A en A- van de converter. Draden laten zitten.</p>
+        <div class="uitkomst">
+          <p><b>Laag</b> (enkele volts of minder): de lus is gesloten, er loopt waarschijnlijk stroom. Ga door.</p>
+          <p><b>Hoog</b> (in de buurt van 20 V): de uitgang stuurt, maar de lus is open. Losse draad of kabelbreuk.</p>
+          <p><b>0 V</b>: de uitgang stuurt niet. Instelling, module of verkeerde klemmen.</p>
+        </div>
+        <p>Dit zijn richtwaarden. De stroommeting in de volgende stappen geeft zekerheid.</p>
+      </li>
+
+      <li>
+        <h3>Stroom naar de klant meten <span class="kous">M4</span></h3>
+        <ol>
+          <li>Klant informeren.</li>
+          <li>Fluke: rood in <b>mA</b>, zwart in <b>COM</b>, draaiknop op <b>mA/A</b>, DC.</li>
+          <li>Eén draad van de klantlus los op de klemmenstrook. Heeft de klem een scheidingsmes, open dan het mes en meet over de twee testpunten.</li>
+          <li>Eén meetpen op de lege klem, de andere op de losse draad.</li>
+          <li>Aflezen. Een min-teken betekent alleen dat de pennen omgekeerd zitten.</li>
+          <li>Draad terug, vastzetten. Rood snoer terug naar V.</li>
+        </ol>
+        <div class="uitkomst"><p>Verwacht: de berekende stroom uit stap 1.</p></div>
+      </li>
+
+      <li>
+        <h3>Stroom op de ingang van de signaalscheider meten <span class="kous">M2</span></h3>
+        <p>Zelfde werkwijze, in serie op de ingang van de signaalscheider. Controleer de klemnummers van ingang en uitgang op de zijkant van de module.</p>
+        <div class="uitkomst">
+          <p>Ingang goed, uitgang goed: het signaal verlaat de kast. Zoek aan de kant van de klant.</p>
+          <p>Ingang goed, uitgang 0: zie <a href="#wat-als">Wat als…</a></p>
+          <p>Ingang 0 mA: het probleem zit tussen flowmeter en signaalscheider. Ga naar stap 6.</p>
+        </div>
+      </li>
+
+      <li>
+        <h3>Vaste stroom simuleren</h3>
+        <p>In de converter: <span class="lcd">C2.2 current out A</span> → <span class="lcd">simulation</span>. Kies bijvoorbeeld <b>12 mA</b> (50 % van het bereik). Meet opnieuw op <span class="kous">M2</span> en <span class="kous">M4</span>. De klant hoort dan de helft van het bereik te zien.</p>
+        <div class="gevaar"><strong>Simulatie altijd uitzetten</strong>Laat je hem aan staan, dan ziet de klant een vaste waarde.</div>
+      </li>
+
+      <li>
+        <h3>Uitgang van de flowmeter los meten <span class="kous">M1</span></h3>
+        <p>Alleen bij een <b>actieve</b> stroomuitgang (controleer in PICK).</p>
+        <ol>
+          <li>Spanningsloos maken. Draden van klem A en A- los.</li>
+          <li>Spanning terug. Fluke op <b>mA</b>, meetpennen direct op A en A-. Een actieve uitgang begrenst zelf de stroom (max. 22 mA), dus dit mag.</li>
+          <li>Eventueel met simulatie op 12 mA.</li>
+          <li>Spanningsloos, draden terug, spanning terug.</li>
+        </ol>
+        <div class="uitkomst">
+          <p><b>Stroom aanwezig</b>: de flowmeter is in orde. Het probleem zit in de kabel of de aansluiting op de signaalscheider.</p>
+          <p><b>0 mA</b>: uitgang of module defect, of de verkeerde klemmen. Neem contact op met KROHNE service.</p>
+        </div>
+      </li>
+    </ol>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <ol start="0">
+        <li>Seri numarasıyla PICK'e bak, gerçek donanımı öğren. PACTware'de önce cihazdan yükle.</li>
+        <li>Menüde range'i not al, beklenen akımı hesapla.</li>
+        <li>Ayırıcının 24 V beslemesini ölç.</li>
+        <li>Sayaç çıkışında gerilime bak: düşük = akım geçiyor, yüksek = kablo kopuk, 0 = çıkış sürmüyor.</li>
+        <li>Müşteriye giden akımı seri ölç.</li>
+        <li>Ayırıcı girişindeki akımı seri ölç.</li>
+        <li>Simülasyonla 12 mA ver ve tekrar ölç. Sonra mutlaka kapat.</li>
+        <li>Sayaç çıkışını kablosuz, doğrudan ölç. Akım varsa sayaç sağlam, sorun kabloda.</li>
+      </ol>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="wat-als">Wat als…</h2>
+    <div class="tabel">
+      <table>
+        <tr><th>Je ziet</th><th>Waarschijnlijke oorzaak</th></tr>
+        <tr><td>0 mA overal, ook bij simulatie</td><td>Uitgang stuurt niet: instelling klem A, module, verkeerde klemmen of kabelbreuk</td></tr>
+        <tr><td>Direct op A / A- wel stroom, op de ingang van de scheider niet</td><td>Kabel of aansluiting tussen flowmeter en signaalscheider</td></tr>
+        <tr><td>Ingang scheider goed, uitgang 0 mA</td><td>Geen voeding scheider, scheider defect, of klantlus open. Test: klantdraden los, Fluke (mA) direct op de uitgang.</td></tr>
+        <tr><td>Rode LED onder het kapje van de scheider</td><td>Signaal buiten het bereik (onder of boven)</td></tr>
+        <tr><td>Precies 4,00 mA terwijl het display debiet toont</td><td>Debiet onder de low flow cutoff, of bereik verkeerd ingesteld</td></tr>
+        <tr><td>Boven 20 mA</td><td>Boven het bereik of foutstroom. Kijk naar de statusmelding op het display.</td></tr>
+        <tr><td>Uitgang goed, klant ziet een andere waarde</td><td>Bij de klant is een ander meetbereik ingesteld</td></tr>
+        <tr><td>Terugstroom wordt als voorwaarts getoond</td><td><span class="lcd">polarity</span> staat op <span class="lcd">absolute value</span>. Alleen voorwaarts: <span class="lcd">positive</span>. Eerst overleggen.</td></tr>
+      </table>
+    </div>
+
+    <!-- ===================================================== -->
+    <h2 id="rekenen">Verwachte stroom</h2>
+    <section class="reken" aria-label="Rekenmachine mA en debiet">
+      <h3>mA ↔ debiet</h3>
+      <div class="velden">
+        <div><label for="p-min">Bereik bij 4 mA</label><input id="p-min" name="min" inputmode="decimal" value="0"></div>
+        <div><label for="p-max">Bereik bij 20 mA</label><input id="p-max" name="max" inputmode="decimal" value="250"></div>
+        <div><label for="p-eenheid">Eenheid</label><input id="p-eenheid" name="eenheid" value="m³/h"></div>
+      </div>
+      <div class="velden">
+        <div><label for="p-ma">Gemeten stroom (mA)</label><input id="p-ma" name="ma" inputmode="decimal" placeholder="bijv. 7,69"></div>
+        <div><label for="p-debiet">of: debiet op display</label><input id="p-debiet" name="debiet" inputmode="decimal" placeholder="bijv. 57,6"></div>
+      </div>
+      <div class="uit" aria-live="polite"></div>
+      <div class="melding" aria-live="polite"></div>
+    </section>
+    <p>Formule: I = 4 + 16 × Q / Qmax (bij bereik vanaf 0). Voorbeeld: bereik 0–250 m³/h en 57,6 m³/h op het display geeft <b>7,69 mA</b>.</p>
+
+    <!-- ===================================================== -->
+    <h2 id="scheider">Signaalscheider: DIP-schakelaars</h2>
+    <p>Phoenix Contact MINI MCR-SL-UI-2I: één ingang, twee gescheiden stroomuitgangen. Voeding via klem 7 (+) en 8 (−) of de DIN-railconnector. De schakelaars zitten onder het kapje.</p>
+    <div class="tabel">
+      <table>
+        <tr><th>Schakelaar</th><th>Functie</th><th>Voor 4-20 mA in en uit</th></tr>
+        <tr><td>1, 2, 3</td><td>Ingangsbereik</td><td>1 ON, 2 ON, 3 ON = 4…20 mA</td></tr>
+        <tr><td>4</td><td>Gedrag buiten bereik</td><td>OFF = analoog tot ca. 23 mA, foutstroom van de flowmeter komt door. ON = begrenzing op 20,5 mA.</td></tr>
+        <tr><td>5, 6</td><td>Uitgangsbereiken</td><td>5 OFF, 6 ON = beide uitgangen 4…20 mA</td></tr>
+      </table>
+    </div>
+
+    <!-- ===================================================== -->
+    <h2 id="fluke">Fluke 179 in het kort</h2>
+    <div class="tabel">
+      <table>
+        <tr><th>Ingang</th><th>Gebruik</th></tr>
+        <tr><td>COM</td><td>Zwart snoer, altijd</td></tr>
+        <tr><td>V Ω</td><td>Rood snoer voor spanning en weerstand</td></tr>
+        <tr><td>mA µA</td><td>Rood snoer voor 4-20 mA. Bereik 60 mA, resolutie 0,01 mA.</td></tr>
+        <tr><td>A</td><td>Grote stromen tot 10 A, hier niet nodig</td></tr>
+      </table>
+    </div>
+    <p>Pulssignaal meten met de Hz-functie: onder 2 Hz toont de Fluke 0 Hz. Trage pulsen tel je dan met de hand tegen de klok.</p>
+
+    <!-- ===================================================== -->
+    <h2 id="les">Les geleerd</h2>
+    <ul>
+      <li>Een PACTware-printje leek de instellingen van het apparaat, maar het waren offline standaardwaarden. Bereik, klemmen en uitvoering klopten niet. Pas met het serienummer in PICK en het menu op het display kwam het echte beeld.</li>
+      <li>De simulator-test van de klant was goud waard: daarmee viel de helft van de keten in één keer af.</li>
+    </ul>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>Elindeki verinin gerçekten o cihaza ait olduğunu doğrula: seri numarasıyla PICK'e bak, menüden oku. Cihazdan okunmamış bir PACTware çıktısı bizi saatlerce yanlış yöne götürdü.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="bronnen">Bronnen</h2>
+    <ul>
+      <li><a href="https://pick.krohne.com">KROHNE PICK</a>: documentatie per serienummer</li>
+      <li><a href="https://cdn.krohne.com/pick2/tagged_docs/MA_OPTISONIC3400_en_230613_4002037706_R06.pdf">OPTISONIC 3400 handboek (PDF)</a></li>
+      <li><a href="https://cdn.krohne.com/pick2/tagged_docs/QS_OPTISONIC3400_en_230417_4009785401_R06.pdf">OPTISONIC 3400 quick start (PDF)</a></li>
+      <li><a href="https://www.phoenixcontact.com/en-dk/products/signal-duplicator-mini-mcr-sl-ui-2i-2864794">Phoenix Contact MINI MCR-SL-UI-2I</a></li>
+      <li><a href="https://www.fluke.com/en-au/product/electrical-testing/digital-multimeters/fluke-179">Fluke 179</a></li>
+    </ul>
+
+    <p class="voet"><a href="../index.html">Terug naar het overzicht</a></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,296 @@
+/* Veldhandboek — leesbaar op een tablet in een buitenkast, ook in de zon.
+   Twee visuele codes met een vaste betekenis:
+   - geel kousje (.kous): een meetpunt, klem of stapnummer, zoals de draadmarkering in de kast
+   - LCD-chip (.lcd): tekst zoals die op het display van de converter staat (menupaden, waarden) */
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;1,400&family=Barlow+Semi+Condensed:wght@500;600;700&family=Share+Tech+Mono&display=swap");
+
+:root {
+  --papier: #ffffff;
+  --vlak: #eef2f3;
+  --inkt: #1b232b;
+  --grijs: #56626d;
+  --lijn: #d3dadf;
+  --staal: #255a8a;
+  --kous: #f3c300;
+  --lcd: #c9da72;
+  --lcd-inkt: #26330e;
+  --gevaar: #a4231b;
+  --gevaar-vlak: #fbeceb;
+
+  --tekst: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --kop: "Barlow Semi Condensed", "Barlow", system-ui, sans-serif;
+  --display: "Share Tech Mono", ui-monospace, "Consolas", monospace;
+
+  --maat: 1.125rem;
+  --breed: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papier);
+  color: var(--inkt);
+  font-family: var(--tekst);
+  font-size: var(--maat);
+  line-height: 1.55;
+}
+
+a { color: var(--staal); text-underline-offset: 0.15em; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--staal);
+  outline-offset: 2px;
+}
+
+.wrap { max-width: var(--breed); margin: 0 auto; padding: 0 1.25rem; }
+
+/* ---------- koppen ---------- */
+h1, h2, h3 { font-family: var(--kop); line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.75rem; font-weight: 600; margin-top: 3rem; padding-top: 1.25rem; border-top: 2px solid var(--inkt); }
+h3 { font-size: 1.3rem; font-weight: 600; margin-top: 1.75rem; }
+p, ul, ol, table { margin: 0.75rem 0; }
+li + li { margin-top: 0.35rem; }
+
+/* ---------- bovenbalk ---------- */
+.balk {
+  border-bottom: 1px solid var(--lijn);
+  background: var(--papier);
+}
+.balk .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; }
+.balk a.thuis { font-family: var(--kop); font-weight: 600; font-size: 1.2rem; color: var(--inkt); text-decoration: none; }
+.balk a.thuis:hover { text-decoration: underline; }
+
+/* ---------- geel kousje ---------- */
+.kous {
+  display: inline-block;
+  background: var(--kous);
+  color: var(--inkt);
+  font-family: var(--kop);
+  font-weight: 600;
+  font-size: 0.92em;
+  line-height: 1.25;
+  padding: 0.05em 0.55em;
+  border-radius: 4px;
+  box-shadow: inset 4px 0 0 rgba(0, 0, 0, 0.13), inset -4px 0 0 rgba(0, 0, 0, 0.13);
+  white-space: nowrap;
+}
+
+/* ---------- LCD-chip ---------- */
+.lcd {
+  display: inline-block;
+  background: var(--lcd);
+  color: var(--lcd-inkt);
+  font-family: var(--display);
+  font-size: 0.95em;
+  padding: 0.05em 0.45em;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px rgba(38, 51, 14, 0.35);
+  white-space: nowrap;
+}
+
+/* ---------- startpagina ---------- */
+.held { padding: 2.5rem 0 1.5rem; }
+.held p.onder { color: var(--grijs); font-size: 1.2rem; margin-top: 0.5rem; }
+
+.zoek { margin-top: 1.75rem; }
+.zoek label { display: block; font-weight: 600; margin-bottom: 0.4rem; }
+.zoek input {
+  width: 100%;
+  font: inherit;
+  font-size: 1.3rem;
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--inkt);
+  border-radius: 6px;
+  background: var(--papier);
+  color: var(--inkt);
+}
+.zoek input::placeholder { color: #7d8891; }
+
+.resultaten { list-style: none; padding: 0; margin: 1.5rem 0 3rem; }
+.resultaten li { margin: 0; border-top: 1px solid var(--lijn); }
+.resultaten li:last-child { border-bottom: 1px solid var(--lijn); }
+.resultaten a {
+  display: block;
+  padding: 1.1rem 0.25rem;
+  color: var(--inkt);
+  text-decoration: none;
+}
+.resultaten a:hover .titel, .resultaten a:focus-visible .titel { text-decoration: underline; }
+.resultaten .titel { font-family: var(--kop); font-weight: 600; font-size: 1.45rem; color: var(--staal); }
+.resultaten .soort { color: var(--grijs); font-size: 0.95rem; }
+.resultaten .samenvatting { display: block; margin-top: 0.3rem; }
+.resultaten .labels { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+.leeg { color: var(--grijs); }
+
+/* ---------- procedurepagina ---------- */
+.kopblok { padding: 2rem 0 0.5rem; }
+.kopblok .keten { color: var(--grijs); font-size: 1.15rem; margin-top: 0.6rem; }
+
+.status {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  background: var(--vlak);
+  border-radius: 6px;
+}
+.status strong { font-family: var(--kop); }
+
+.inhoud { margin-top: 1.5rem; }
+.inhoud summary { cursor: pointer; font-weight: 600; }
+.inhoud ol { columns: 2 14rem; column-gap: 2rem; }
+
+.gevaar {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem 0.9rem 1.1rem;
+  background: var(--gevaar-vlak);
+  border-left: 5px solid var(--gevaar);
+  border-radius: 0 6px 6px 0;
+}
+.gevaar > strong:first-child { color: var(--gevaar); font-family: var(--kop); font-size: 1.15rem; display: block; margin-bottom: 0.25rem; }
+.gevaar ul { margin: 0.25rem 0 0; padding-left: 1.2rem; }
+
+/* Turkse samenvatting */
+details.tr {
+  margin: 1.25rem 0;
+  border: 1px dashed var(--grijs);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+}
+details.tr summary { cursor: pointer; font-weight: 600; color: var(--grijs); }
+details.tr[open] summary { margin-bottom: 0.4rem; }
+details.tr p, details.tr ul { margin: 0.4rem 0; }
+
+/* signaalketen */
+.keten-schema {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+.keten-schema .blok {
+  flex: 1 1 0;
+  min-width: 0;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  border: 2px solid var(--inkt);
+  border-radius: 6px;
+  padding: 0.6rem 0.7rem;
+  background: var(--papier);
+}
+.keten-schema .blok b { font-family: var(--kop); display: block; font-size: 1rem; }
+.keten-schema .blok span { color: var(--grijs); font-size: 0.92rem; display: block; }
+.keten-schema .draad {
+  flex: 0 0 3.1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.keten-schema .draad::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  border-top: 3px solid var(--inkt);
+}
+.keten-schema .draad .kous { position: relative; }
+.keten-schema .blok .kous { display: inline-block; margin-top: 0.4rem; color: var(--inkt); font-size: 0.9rem; }
+
+@media (max-width: 44rem) {
+  .keten-schema { flex-direction: column; overflow: visible; }
+  .keten-schema .blok { min-width: 0; }
+  .keten-schema .draad { flex: 0 0 2.6rem; }
+  .keten-schema .draad::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: 3px solid var(--inkt); }
+}
+
+td .lcd { white-space: normal; }
+
+/* stappen */
+ol.stappen { list-style: none; padding: 0; counter-reset: stap; }
+ol.stappen > li {
+  counter-increment: stap;
+  position: relative;
+  padding: 1.1rem 0 1.1rem 3.25rem;
+  border-top: 1px solid var(--lijn);
+  margin: 0;
+}
+ol.stappen > li::before {
+  content: counter(stap);
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  min-width: 2.3rem;
+  text-align: center;
+  background: var(--kous);
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 0.05em 0.4em;
+  border-radius: 4px;
+  box-shadow: inset 4px 0 0 rgba(0, 0, 0, 0.13), inset -4px 0 0 rgba(0, 0, 0, 0.13);
+}
+ol.stappen > li.nul::before { content: "0"; }
+ol.stappen > li.nul { counter-increment: none; }
+ol.stappen h3 { margin-top: 0; }
+ol.stappen ul, ol.stappen ol { padding-left: 1.2rem; }
+
+.uitkomst { margin: 0.6rem 0; padding: 0.6rem 0.9rem; background: var(--vlak); border-radius: 6px; }
+.uitkomst p { margin: 0.25rem 0; }
+
+/* tabellen */
+.tabel { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 1rem; }
+th, td { text-align: left; vertical-align: top; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--lijn); }
+th { font-family: var(--kop); font-weight: 600; font-size: 1.05rem; border-bottom: 2px solid var(--inkt); }
+
+/* rekenmachine */
+.reken {
+  margin: 1.25rem 0;
+  padding: 1.1rem 1.1rem 1.25rem;
+  border: 2px solid var(--inkt);
+  border-radius: 8px;
+}
+.reken h3 { margin-top: 0; }
+.reken .velden { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.8rem; margin-top: 0.75rem; }
+.reken label { display: block; font-weight: 600; font-size: 0.98rem; margin-bottom: 0.25rem; }
+.reken input {
+  width: 100%;
+  font: inherit;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.65rem;
+  border: 2px solid var(--grijs);
+  border-radius: 5px;
+  background: var(--papier);
+  color: var(--inkt);
+}
+.reken input:focus { border-color: var(--staal); }
+.reken .uit {
+  margin-top: 1rem;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  background: var(--lcd);
+  color: var(--lcd-inkt);
+  padding: 0.55rem 0.8rem;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 4px rgba(38, 51, 14, 0.4);
+  min-height: 3rem;
+}
+.reken .melding { margin-top: 0.5rem; color: var(--gevaar); font-weight: 600; min-height: 1.5em; }
+.reken .hint { color: var(--grijs); font-size: 0.95rem; }
+
+/* voet */
+.voet { margin: 4rem 0 2rem; padding-top: 1rem; border-top: 1px solid var(--lijn); color: var(--grijs); font-size: 0.95rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+@media print {
+  .balk, .zoek, .inhoud { display: none; }
+  details.tr { display: none; }
+  h2 { break-after: avoid; }
+}
