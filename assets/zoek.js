@@ -21,6 +21,26 @@ const PAGINAS = [
       "fluke 789 787 787b processmeter procesmeter procesmtr meettang loop calibrator lus kalibrator bron sturen source simulate simuleren simulatie lusvoeding loop power 24 v hart 250 ohm span check 25 % step coarse fine ramp transmitter drukopnemer druksensor 2-draads tweedraads rtu ingang testen signaalscheider ijken",
   },
   {
+    titel: "KROHNE IFC 300 W: aansluiten",
+    soort: "Apparaat",
+    url: "apparaten/krohne-ifc-300-w.html",
+    samenvatting:
+      "Klemmen van voeding, I/O, spoelkabel (7-8-9) en signaalkabel (1-2-3-20) naar de OPTIFLUX-sensor. Met actieve en passieve stroomuitgang.",
+    labels: ["KROHNE IFC 300 W", "OPTIFLUX", "Aansluitschema"],
+    woorden:
+      "krohne ifc 300 ifc300 w wand wandbehuizing optiflux elektromagnetisch magnetisch flowmeter debietmeter aansluiten aansluitschema bedrading klemmen spoelkabel veldstroom signaalkabel ds 300 afscherming zadelklem aarde voeding 230 24 basic io stroomuitgang actief passief a+ a- hart status puls kabelnummer",
+  },
+  {
+    titel: "UFC 400 uitlezen met KMS en PACTware",
+    soort: "Procedure",
+    url: "procedures/ufc400-uitlezen.html",
+    samenvatting:
+      "Parameters, diagnose en signaalsnapshot van een UFC 400 vastleggen met de KROHNE Monitoring Software, daarna de meetwaarden via PACTware (Load from Device).",
+    labels: ["KROHNE UFC 400", "KMS", "PACTware"],
+    woorden:
+      "uitlezen uitlezing demin meter krohne ufc 400 ufc400 optisonic kms krohne monitoring software pactware dtm gdc usb adapter mini usb com poort parameters export csv diagnostics diagnose snapshot signaal load from device cyclic update screenshot",
+  },
+  {
     titel: "mA ↔ debiet rekenmachine",
     soort: "Hulpmiddel",
     url: "tools/ma-debiet.html",
@@ -67,6 +87,13 @@ function toon(lijst, invoer) {
   if (woorden.length) treffers = treffers.filter((t) => t.s > 0).sort((a, b) => b.s - a.s);
 
   lijst.innerHTML = "";
+  const groeperen = !woorden.length;
+  if (groeperen) {
+    const volgorde = { Procedure: 0, Apparaat: 1, Hulpmiddel: 2 };
+    treffers.sort((a, b) => volgorde[a.p.soort] - volgorde[b.p.soort]);
+  }
+  const koppen = { Procedure: "Procedures", Apparaat: "Apparaten", Hulpmiddel: "Hulpmiddelen" };
+  let vorige = null;
   if (!treffers.length) {
     const li = document.createElement("li");
     li.className = "leeg";
@@ -77,6 +104,13 @@ function toon(lijst, invoer) {
   }
 
   for (const { p } of treffers) {
+    if (groeperen && p.soort !== vorige) {
+      const kop = document.createElement("li");
+      kop.className = "groep";
+      kop.textContent = koppen[p.soort] || p.soort;
+      lijst.appendChild(kop);
+      vorige = p.soort;
+    }
     const li = document.createElement("li");
     const a = document.createElement("a");
     a.href = p.url;
@@ -102,7 +136,8 @@ function toon(lijst, invoer) {
       labels.appendChild(k);
     }
 
-    a.append(titel, soort, samen, labels);
+    if (groeperen) a.append(titel, samen, labels);
+    else a.append(titel, soort, samen, labels);
     li.appendChild(a);
     lijst.appendChild(li);
   }

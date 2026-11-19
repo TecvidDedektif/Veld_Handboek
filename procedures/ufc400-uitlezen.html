@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UFC 400 uitlezen met KMS en PACTware · Veldhandboek</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="balk"><div class="wrap"><a class="thuis" href="../index.html">Veldhandboek</a></div></nav>
+
+  <main class="wrap">
+    <header class="kopblok">
+      <h1>UFC 400 uitlezen met KMS en PACTware</h1>
+      <p class="keten">Parameters, diagnose en een signaalsnapshot van een KROHNE UFC 400 vastleggen, bijvoorbeeld bij demin-meters.</p>
+
+      <details class="inhoud">
+        <summary>Inhoud</summary>
+        <ol>
+          <li><a href="#nodig">Wat je nodig hebt</a></li>
+          <li><a href="#kms">Deel 1: KROHNE Monitoring Software</a></li>
+          <li><a href="#pactware">Deel 2: PACTware</a></li>
+          <li><a href="#resultaat">Wat je mee terug neemt</a></li>
+        </ol>
+      </details>
+    </header>
+
+    <!-- ===================================================== -->
+    <h2 id="nodig">Wat je nodig hebt</h2>
+    <div class="tabel">
+      <table>
+        <tr><th>Hardware</th><th>Software</th></tr>
+        <tr><td>KROHNE USB-GDC-adapter</td><td>KROHNE Monitoring Software (KMS)</td></tr>
+        <tr><td>USB naar mini-USB kabel</td><td>PACTware 6.1 met de UFC 400 DTM</td></tr>
+      </table>
+    </div>
+    <p><b>Test vóór vertrek.</b> Controleer op een testopstelling met een UFC 400 dat de laptop, de adapter en de software werken. Dan weet je ook al waar alles zit.</p>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>Gerekenler: KROHNE USB-GDC adaptörü, mini USB kablo, KMS ve PACTware 6.1. Yola çıkmadan önce test düzeneğinde laptopu ve yazılımı dene.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="kms">Deel 1: KROHNE Monitoring Software</h2>
+    <ol class="stappen">
+      <li>
+        <h3>Aansluiten</h3>
+        <p>Haal het display voorzichtig uit de houder. Sluit de mini-USB kabel aan op de aansluiting op de flowmeter.</p>
+      </li>
+      <li>
+        <h3>Verbinden</h3>
+        <p>Open KMS. <span class="lcd">Device</span> → <span class="lcd">Connect</span> (of F8).</p>
+        <p>Communication Interface op <span class="lcd">COM port</span>. Kies de juiste COM-poort: die zie je in Windows <b>Apparaatbeheer</b>. <span class="lcd">OK</span>.</p>
+      </li>
+      <li>
+        <h3>Parameters exporteren</h3>
+        <p><span class="lcd">Reporting</span> → <span class="lcd">Parameters</span> → <span class="lcd">Export</span> → <span class="lcd">Export to CSV…</span> → <span class="lcd">Select All</span> → <span class="lcd">Export</span>. Sla op met het opslaan-icoon.</p>
+      </li>
+      <li>
+        <h3>Diagnose opslaan</h3>
+        <p>Achter elkaar openen en telkens opslaan met het opslaan-icoon:</p>
+        <ul>
+          <li><span class="lcd">Diagnostics</span></li>
+          <li><span class="lcd">Diagnostics 2</span></li>
+          <li><span class="lcd">Volume Flow</span></li>
+        </ul>
+      </li>
+      <li>
+        <h3>Signaalsnapshot</h3>
+        <p><span class="lcd">View</span> → <span class="lcd">Signal Snapshots…</span>. Zet <b>Repetition Mode</b> op <span class="lcd">Single Shot</span> en klik <span class="lcd">Snapshot</span>.</p>
+        <p>Als het beeld verschijnt: <span class="lcd">Log to .CSV file</span> en opslaan.</p>
+      </li>
+      <li>
+        <h3>Afsluiten</h3>
+        <p><span class="lcd">Device</span> → <span class="lcd">Disconnect</span>. Sluit KMS af.</p>
+      </li>
+    </ol>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <ol>
+        <li>Ekranı yuvasından çıkar, mini USB'yi tak.</li>
+        <li>KMS: Device → Connect, COM portunu Aygıt Yöneticisi'nden bul.</li>
+        <li>Reporting → Parameters → CSV olarak dışa aktar (Select All).</li>
+        <li>Diagnostics, Diagnostics 2 ve Volume Flow'u ayrı ayrı kaydet.</li>
+        <li>View → Signal Snapshots: Single Shot, Snapshot, CSV'ye kaydet.</li>
+        <li>Device → Disconnect.</li>
+      </ol>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="pactware">Deel 2: PACTware</h2>
+    <ol class="stappen">
+      <li>
+        <h3>Project opbouwen</h3>
+        <p>Open PACTware 6.1 en maak een <span class="lcd">New Project</span>. Klik op het + bij de COM DTM en kies de <b>GDC-adapter</b>. Controleer de gegevens, <span class="lcd">OK</span>.</p>
+        <p>Klik daarna op het + om de <b>UFC 400</b> eronder te zetten.</p>
+      </li>
+      <li>
+        <h3>Verbinden</h3>
+        <p>Klik op de drie puntjes van de USB-adapter → <span class="lcd">Connect</span>. Daarna de drie puntjes van de UFC 400 → <span class="lcd">Connect</span>.</p>
+        <p>In de projectboom staan nu de adapter en de UFC 400, allebei verbonden.</p>
+      </li>
+      <li>
+        <h3>Gegevens uit het apparaat laden</h3>
+        <p>Rechtermuisklik op de UFC 400 → <span class="lcd">Load from Device</span>.</p>
+        <div class="gevaar"><strong>Deze stap niet overslaan</strong>Zonder Load from Device kijk je naar de standaardwaarden van de DTM, niet naar de echte instellingen. Een leeg serienummer of tekst als „HART MESSAGE” verraadt dat.</div>
+      </li>
+      <li>
+        <h3>Meetwaarden vastleggen</h3>
+        <p>Dubbelklik op de UFC 400 → <span class="lcd">Measurement</span> → <span class="lcd">Cyclic update</span>. Maak een schermafbeelding met <b>Windows + Shift + S</b> en sla die op.</p>
+      </li>
+      <li>
+        <h3>Afsluiten</h3>
+        <p><span class="lcd">Disconnect</span>. Display terug in de houder.</p>
+      </li>
+    </ol>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <ol>
+        <li>PACTware'de yeni proje: önce GDC adaptörü, altına UFC 400.</li>
+        <li>Önce adaptöre, sonra UFC 400'e Connect.</li>
+        <li><b>Load from Device</b> yap. Bunu atlarsan gerçek ayarları değil, varsayılan değerleri görürsün.</li>
+        <li>Measurement → Cyclic update, Windows + Shift + S ile ekran görüntüsü al.</li>
+        <li>Disconnect, ekranı yerine tak.</li>
+      </ol>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="resultaat">Wat je mee terug neemt</h2>
+    <div class="tabel">
+      <table>
+        <tr><th>Uit</th><th>Bestand</th></tr>
+        <tr><td>KMS</td><td>Parameters (CSV)</td></tr>
+        <tr><td>KMS</td><td>Diagnostics, Diagnostics 2, Volume Flow</td></tr>
+        <tr><td>KMS</td><td>Signaalsnapshot (CSV)</td></tr>
+        <tr><td>PACTware</td><td>Schermafbeelding van de meetwaarden</td></tr>
+      </table>
+    </div>
+    <p>Geef de bestanden dezelfde naam met datum en meetpunt. Dan kun je later twee uitlezingen naast elkaar leggen.</p>
+
+    <p class="voet"><a href="../index.html">Terug naar het overzicht</a></p>
+  </main>
+</body>
+</html>

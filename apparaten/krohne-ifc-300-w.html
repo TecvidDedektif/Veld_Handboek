@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KROHNE IFC 300 W: aansluiten · Veldhandboek</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="balk"><div class="wrap"><a class="thuis" href="../index.html">Veldhandboek</a></div></nav>
+
+  <main class="wrap">
+    <header class="kopblok">
+      <h1>KROHNE IFC 300 W: aansluiten</h1>
+      <p class="keten">Elektromagnetische flowmeter. Converter in wandbehuizing, sensor (OPTIFLUX) apart, verbonden met twee kabels.</p>
+
+      <div class="status">
+        <strong>Gebaseerd op het aansluitschema in de kast</strong> voor een OPTIFLUX met DS 300-kabel en standaard basic I/O.
+        Kijk altijd ook naar het etiket in het deksel van de aansluitruimte: daar staat de werkelijke I/O-uitvoering. Er bestaan ook IFC 300 W's met Modbus.
+      </div>
+
+      <details class="inhoud">
+        <summary>Inhoud</summary>
+        <ol>
+          <li><a href="#overzicht">Overzicht</a></li>
+          <li><a href="#veiligheid">Let op</a></li>
+          <li><a href="#voeding">Voeding</a></li>
+          <li><a href="#kabels">Spoelkabel en signaalkabel</a></li>
+          <li><a href="#io">I/O-klemmen</a></li>
+          <li><a href="#actief">Actief of passief</a></li>
+          <li><a href="#bronnen">Bronnen</a></li>
+        </ol>
+      </details>
+    </header>
+
+    <!-- ===================================================== -->
+    <h2 id="overzicht">Overzicht</h2>
+    <figure class="plaat smal">
+      <img src="../assets/img/ifc300-aansluiten.svg" alt="Converter met rijen klemmen: voeding L, N, PE; I/O A, A−, A+, B, B−, C, C−, D, D−; veldstroom 7, 8, 9; signaal 1, 2, 3, 20. Twee kabels naar de sensor met klemmen 7, 8, 9 en 1, 2, 3.">
+      <figcaption>Klemnummers aan beide kanten gelijk. Klem 20 (afscherming) zit alleen in de converter.</figcaption>
+    </figure>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>IFC 300 W duvara monte converter; sensör ayrı. Aralarında iki kablo var: bobin kablosu (7, 8, 9) ve sinyal kablosu (1, 2, 3 ve ekran 20). Numaralar iki uçta da aynı. Gerçek I/O tipini klemens kapağının içindeki etiketten kontrol et.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="veiligheid">Let op</h2>
+    <div class="gevaar">
+      <strong>Voordat je de aansluitruimte opent</strong>
+      <ul>
+        <li>De converter werkt op <b>100–230 V AC</b>. Maak spanningsloos voordat je aansluit of herbedraadt.</li>
+        <li>Spoel- en signaalkabel nooit verwisselen: de spoelkabel voert de veldstroom, de signaalkabel een heel klein meetsignaal.</li>
+        <li>Afscherming volgens het schema aansluiten. Een verkeerde afscherming geeft een onrustige of verkeerde meting.</li>
+      </ul>
+    </div>
+
+    <!-- ===================================================== -->
+    <h2 id="voeding">Voeding</h2>
+    <div class="tabel">
+      <table>
+        <tr><th>Uitvoering</th><th>Klemmen</th><th>Bereik</th><th>Verbruik</th></tr>
+        <tr><td>AC</td><td>L, N, PE</td><td>100–230 V (−15 % / +10 %)</td><td>22 VA</td></tr>
+        <tr><td>DC</td><td>L+, L−, FE</td><td>12–24 V (−25 % / +30 %)</td><td>12 W</td></tr>
+      </table>
+    </div>
+
+    <!-- ===================================================== -->
+    <h2 id="kabels">Spoelkabel en signaalkabel</h2>
+    <h3>Spoelkabel (veldstroom)</h3>
+    <div class="tabel">
+      <table>
+        <tr><th>Klem</th><th>Ader</th><th>Genummerde ader</th></tr>
+        <tr><td><span class="kous">7</span></td><td>wit</td><td>1</td></tr>
+        <tr><td><span class="kous">8</span></td><td>groen</td><td>2</td></tr>
+        <tr><td><span class="kous">9</span></td><td>bruin</td><td>3</td></tr>
+      </table>
+    </div>
+    <p>Afgeschermde 3-aderige kabel. Bij kabels met genummerde aders volg je het nummer, niet de kleur.</p>
+
+    <h3>Signaalkabel (DS 300)</h3>
+    <div class="tabel">
+      <table>
+        <tr><th>Klem</th><th>Ader</th></tr>
+        <tr><td><span class="kous">1</span></td><td>referentiedraad</td></tr>
+        <tr><td><span class="kous">2</span></td><td>wit</td></tr>
+        <tr><td><span class="kous">3</span></td><td>rood</td></tr>
+        <tr><td><span class="kous">20</span></td><td>afscherming, alleen in de converter</td></tr>
+      </table>
+    </div>
+    <p>Klemmen 4, 30 en 40 worden in dit schema niet gebruikt.</p>
+
+    <h3>Afscherming</h3>
+    <div class="tabel">
+      <table>
+        <tr><th>Kant</th><th>Wat</th></tr>
+        <tr><td>Sensor</td><td>Afscherming met zadelklemmen aan aarde</td></tr>
+        <tr><td>Converter</td><td>Buitenste afscherming geïsoleerd; signaalkabel-afscherming op klem 20</td></tr>
+      </table>
+    </div>
+
+    <h3>Kabelnummers</h3>
+    <div class="tabel">
+      <table>
+        <tr><th>Kabel</th><th>Artikelnummer</th></tr>
+        <tr><td>Spoelkabel, afgeschermd 3-aderig, voor IFC 300 W</td><td>5062100800</td></tr>
+        <tr><td>Signaalkabel DS 300, grijs</td><td>5316299800</td></tr>
+        <tr><td>Signaalkabel DS 300, blauw (Ex)</td><td>5316418200</td></tr>
+        <tr><td>Kabel met genummerde aders, grijs</td><td>5315290300</td></tr>
+      </table>
+    </div>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <ul>
+        <li>Bobin kablosu: 7 beyaz, 8 yeşil, 9 kahverengi. Numaralı tellerde 1-2-3'ü takip et.</li>
+        <li>Sinyal kablosu: 1 referans teli, 2 beyaz, 3 kırmızı, 20 ekran (sadece converter'da).</li>
+        <li>Ekran: sensör tarafında eyer kelepçeyle toprağa, converter tarafında dış ekran yalıtılır.</li>
+      </ul>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="io">I/O-klemmen (basic I/O)</h2>
+    <div class="tabel">
+      <table>
+        <tr><th>Klemmen</th><th>Functie</th></tr>
+        <tr><td><span class="kous">A</span> + <span class="kous">A−</span></td><td>Stroomuitgang 4-20 mA met HART, <b>passief</b></td></tr>
+        <tr><td><span class="kous">A</span> + <span class="kous">A+</span></td><td>Stroomuitgang 4-20 mA met HART, <b>actief</b></td></tr>
+        <tr><td><span class="kous">B</span> + <span class="kous">B−</span></td><td>Statusuitgang of stuuringang</td></tr>
+        <tr><td><span class="kous">C</span> + <span class="kous">C−</span></td><td>Statusuitgang</td></tr>
+        <tr><td><span class="kous">D</span> + <span class="kous">D−</span></td><td>Pulsuitgang of statusuitgang</td></tr>
+      </table>
+    </div>
+
+    <!-- ===================================================== -->
+    <h2 id="actief">Actief of passief</h2>
+    <p>Bij basic I/O kies je met de <b>klemmen</b> of de stroomuitgang actief of passief werkt. Kijk eerst wat de ontvanger is:</p>
+    <ul>
+      <li>Ontvanger <b>zonder</b> eigen lusvoeding, zoals de ingang van een signaalscheider: <b>A + A+</b> (actief).</li>
+      <li>Ontvanger <b>met</b> lusvoeding, of een externe voeding in de lus: <b>A + A−</b> (passief).</li>
+    </ul>
+    <figure class="plaat">
+      <div class="platen">
+        <img src="../assets/img/stroomuitgang-actief.svg" alt="Actief: klem A+ en A. De flowmeter heeft een interne 24 V-bron en voedt de lus naar de passieve ingang van de ontvanger.">
+        <img src="../assets/img/stroomuitgang-passief.svg" alt="Passief: klem A en A−. Er zit een externe 24 V-voeding in de lus tussen flowmeter en ontvanger.">
+      </div>
+      <figcaption>Polariteit aan de kant van de flowmeter: controleer het etiket in het deksel.</figcaption>
+    </figure>
+    <p>Twee bronnen in één lus (actieve uitgang op een actieve ingang) werkt niet. Geen enkele bron (passieve uitgang op een passieve ingang) geeft 0 mA. Zie ook <a href="../procedures/klantsignaal-4-20ma.html">Klantsignaal 4-20 mA: storing zoeken</a>.</p>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>Basic I/O'da aktif/pasif seçimi klemenslerle yapılır: A + A+ aktif (sayaç loop'u kendisi besler), A + A− pasif (loop'ta harici besleme gerekir). Karşı taraf sinyal ayırıcı gibi pasif bir girişse A + A+ kullan. İki taraf da pasifse akım 0 mA olur.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="bronnen">Bronnen</h2>
+    <ul>
+      <li><a href="https://pick.krohne.com">KROHNE PICK</a>: documentatie en aansluitschema per serienummer</li>
+      <li><a href="https://cdn.krohne.com/pick2/tagged_docs/MA_IFC300_en_210618_4000069804_R05.pdf">IFC 300 handboek (PDF)</a></li>
+    </ul>
+
+    <p class="voet"><a href="../index.html">Terug naar het overzicht</a></p>
+  </main>
+</body>
+</html>

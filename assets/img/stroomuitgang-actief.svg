@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 320" font-family="Barlow Semi Condensed, Barlow, Arial, sans-serif">
+  <title>Actieve stroomuitgang: klem A en A+, de flowmeter voedt de lus zelf</title>
+  <defs>
+    <marker id="p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#255a8a"/></marker>
+  </defs>
+  <text x="190" y="30" font-size="23" font-weight="700" fill="#1b232b" text-anchor="middle">Actief: A en A+</text>
+  <!-- flowmeter -->
+  <rect x="14" y="56" width="142" height="190" rx="10" fill="#eef2f3" stroke="#1b232b" stroke-width="3"/>
+  <text x="28" y="84" font-size="17" font-weight="700" fill="#1b232b">Flowmeter</text>
+  <!-- interne bron -->
+  <circle cx="72" cy="152" r="26" fill="#ffffff" stroke="#1b232b" stroke-width="2.5"/>
+  <text x="72" y="158" font-size="16" font-weight="700" fill="#1b232b" text-anchor="middle">24 V</text>
+  <line x1="98" y1="152" x2="120" y2="152" stroke="#1b232b" stroke-width="2"/>
+  <line x1="120" y1="110" x2="120" y2="194" stroke="#1b232b" stroke-width="2"/>
+  <rect x="134" y="98" width="34" height="24" rx="3" fill="#ffffff" stroke="#1b232b" stroke-width="2"/>
+  <text x="151" y="115" font-size="14" font-weight="700" fill="#1b232b" text-anchor="middle">A+</text>
+  <rect x="134" y="182" width="34" height="24" rx="3" fill="#ffffff" stroke="#1b232b" stroke-width="2"/>
+  <text x="151" y="199" font-size="14" font-weight="700" fill="#1b232b" text-anchor="middle">A</text>
+  <line x1="120" y1="110" x2="134" y2="110" stroke="#1b232b" stroke-width="2"/>
+  <line x1="120" y1="194" x2="134" y2="194" stroke="#1b232b" stroke-width="2"/>
+  <!-- ontvanger -->
+  <rect x="236" y="56" width="130" height="190" rx="10" fill="#ffffff" stroke="#1b232b" stroke-width="3"/>
+  <text x="301" y="84" font-size="16" font-weight="700" fill="#1b232b" text-anchor="middle">Ontvanger</text>
+  <text x="301" y="104" font-size="13" fill="#56626d" text-anchor="middle">passieve ingang,</text>
+  <text x="301" y="120" font-size="13" fill="#56626d" text-anchor="middle">bijv. signaalscheider</text>
+  <rect x="224" y="98" width="26" height="24" rx="3" fill="#ffffff" stroke="#1b232b" stroke-width="2"/>
+  <text x="237" y="115" font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">+</text>
+  <rect x="224" y="182" width="26" height="24" rx="3" fill="#ffffff" stroke="#1b232b" stroke-width="2"/>
+  <text x="237" y="199" font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">−</text>
+  <!-- draden -->
+  <line x1="168" y1="110" x2="224" y2="110" stroke="#c62828" stroke-width="4"/>
+  <line x1="168" y1="194" x2="224" y2="194" stroke="#1b232b" stroke-width="4"/>
+  <line x1="178" y1="96" x2="214" y2="96" stroke="#255a8a" stroke-width="3" marker-end="url(#p)"/>
+  <line x1="214" y1="208" x2="178" y2="208" stroke="#255a8a" stroke-width="3" marker-end="url(#p)"/>
+  <text x="190" y="280" font-size="17" fill="#1b232b" text-anchor="middle">De flowmeter levert zelf de spanning.</text>
+  <text x="190" y="304" font-size="17" fill="#1b232b" text-anchor="middle">Geen extra voeding in de lus.</text>
+</svg>

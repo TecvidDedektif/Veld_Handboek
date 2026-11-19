@@ -125,6 +125,15 @@ li + li { margin-top: 0.35rem; }
 .resultaten .samenvatting { display: block; margin-top: 0.3rem; }
 .resultaten .labels { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
 .leeg { color: var(--grijs); }
+.resultaten li.groep {
+  border-top: 2px solid var(--inkt);
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 1.6rem 0 0.4rem;
+}
+.resultaten li.groep:first-child { padding-top: 0.6rem; }
+.resultaten li.groep + li { border-top: 0; }
 
 /* ---------- procedurepagina ---------- */
 .kopblok { padding: 2rem 0 0.5rem; }
@@ -212,6 +221,7 @@ td .lcd { white-space: normal; }
 /* figuren */
 figure.plaat { margin: 1.5rem 0; }
 figure.plaat .platen { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.6rem; }
+figure.plaat.smal img { max-width: 26rem; margin: 0 auto; }
 figure.plaat .platen.drie { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
 figure.plaat img { display: block; width: 100%; height: auto; border: 1px solid var(--lijn); border-radius: 6px; background: var(--papier); padding: 0.5rem; }
 figure.plaat figcaption { color: var(--grijs); font-size: 0.98rem; margin-top: 0.45rem; }

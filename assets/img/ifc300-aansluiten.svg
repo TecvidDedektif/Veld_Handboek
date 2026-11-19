@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 640" font-family="Barlow Semi Condensed, Barlow, Arial, sans-serif">
+  <title>IFC 300 W: voeding, I/O, veldstroomkabel 7-8-9 en signaalkabel 1-2-3-20 naar de sensor</title>
+  <defs>
+    <g id="klem">
+      <rect x="-14" y="-13" width="28" height="26" rx="3" fill="#ffffff" stroke="#1b232b" stroke-width="2"/>
+    </g>
+    <g id="kous">
+      <rect x="0" y="0" width="34" height="22" rx="4" fill="#f3c300"/>
+      <rect x="0" y="0" width="4" height="22" fill="#000" opacity="0.14"/>
+      <rect x="30" y="0" width="4" height="22" fill="#000" opacity="0.14"/>
+    </g>
+  </defs>
+
+  <!-- ================= converter ================= -->
+  <rect x="14" y="14" width="372" height="262" rx="10" fill="#eef2f3" stroke="#1b232b" stroke-width="3"/>
+  <text x="28" y="44" font-size="22" font-weight="700" fill="#1b232b">IFC 300 W</text>
+  <text x="372" y="44" font-size="15" fill="#56626d" text-anchor="end">aansluitruimte</text>
+
+  <!-- voeding -->
+  <text x="28" y="86" font-size="16" font-weight="600" fill="#1b232b">Voeding</text>
+  <g font-size="14" font-weight="700" fill="#1b232b" text-anchor="middle">
+    <use href="#klem" x="140" y="81"/><text x="140" y="86">L</text>
+    <use href="#klem" x="172" y="81"/><text x="172" y="86">N</text>
+    <use href="#klem" x="204" y="81"/><text x="204" y="86">PE</text>
+  </g>
+  <text x="228" y="86" font-size="14" fill="#56626d">AC 100–230 V</text>
+
+  <!-- I/O -->
+  <text x="28" y="136" font-size="16" font-weight="600" fill="#1b232b">I/O</text>
+  <g font-size="13" font-weight="700" fill="#1b232b" text-anchor="middle">
+    <use href="#klem" x="96" y="131"/><text x="96" y="136">A</text>
+    <use href="#klem" x="127" y="131"/><text x="127" y="136">A−</text>
+    <use href="#klem" x="158" y="131"/><text x="158" y="136">A+</text>
+    <use href="#klem" x="198" y="131"/><text x="198" y="136">B</text>
+    <use href="#klem" x="229" y="131"/><text x="229" y="136">B−</text>
+    <use href="#klem" x="269" y="131"/><text x="269" y="136">C</text>
+    <use href="#klem" x="300" y="131"/><text x="300" y="136">C−</text>
+    <use href="#klem" x="340" y="131"/><text x="340" y="136">D</text>
+    <use href="#klem" x="371" y="131" transform="translate(-8,0)"/><text x="363" y="136">D−</text>
+  </g>
+  <text x="127" y="164" font-size="13" fill="#56626d" text-anchor="middle">stroom</text>
+  <text x="214" y="164" font-size="13" fill="#56626d" text-anchor="middle">status/in</text>
+  <text x="285" y="164" font-size="13" fill="#56626d" text-anchor="middle">status</text>
+  <text x="351" y="164" font-size="13" fill="#56626d" text-anchor="middle">puls</text>
+
+  <!-- veldstroom en signaal -->
+  <text x="92" y="200" font-size="16" font-weight="600" fill="#1b232b" text-anchor="middle">Veldstroom</text>
+  <text x="268" y="200" font-size="16" font-weight="600" fill="#1b232b" text-anchor="middle">Signaal</text>
+  <g font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">
+    <use href="#klem" x="60" y="228"/><text x="60" y="233">7</text>
+    <use href="#klem" x="92" y="228"/><text x="92" y="233">8</text>
+    <use href="#klem" x="124" y="228"/><text x="124" y="233">9</text>
+    <use href="#klem" x="220" y="228"/><text x="220" y="233">1</text>
+    <use href="#klem" x="252" y="228"/><text x="252" y="233">2</text>
+    <use href="#klem" x="284" y="228"/><text x="284" y="233">3</text>
+    <use href="#klem" x="316" y="228"/><text x="316" y="233">20</text>
+  </g>
+
+  <!-- ================= kabels ================= -->
+  <!-- veldstroomkabel -->
+  <rect x="44" y="262" width="96" height="190" rx="14" fill="#f7f9fa" stroke="#1b232b" stroke-width="2" stroke-dasharray="7 5"/>
+  <line x1="60" y1="241" x2="60" y2="468" stroke="#1b232b" stroke-width="7"/>
+  <line x1="60" y1="241" x2="60" y2="468" stroke="#ffffff" stroke-width="4"/>
+  <line x1="92" y1="241" x2="92" y2="468" stroke="#2e7d32" stroke-width="6"/>
+  <line x1="124" y1="241" x2="124" y2="468" stroke="#6d4c41" stroke-width="6"/>
+  <!-- signaalkabel -->
+  <rect x="204" y="262" width="128" height="190" rx="14" fill="#f7f9fa" stroke="#1b232b" stroke-width="2" stroke-dasharray="7 5"/>
+  <line x1="220" y1="241" x2="220" y2="468" stroke="#8d979f" stroke-width="6"/>
+  <line x1="252" y1="241" x2="252" y2="468" stroke="#1b232b" stroke-width="7"/>
+  <line x1="252" y1="241" x2="252" y2="468" stroke="#ffffff" stroke-width="4"/>
+  <line x1="284" y1="241" x2="284" y2="468" stroke="#c62828" stroke-width="6"/>
+  <path d="M316,241 L316,262" stroke="#1b232b" stroke-width="3" stroke-dasharray="4 3"/>
+
+  <text x="30" y="362" font-size="15" font-weight="600" fill="#1b232b" text-anchor="middle" transform="rotate(-90 30 362)">spoelkabel</text>
+  <text x="352" y="362" font-size="15" font-weight="600" fill="#1b232b" text-anchor="middle" transform="rotate(-90 352 362)">signaalkabel</text>
+
+  <!-- kousjes voor afscherming -->
+  <use href="#kous" x="150" y="270"/>
+  <text x="167" y="286" font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">**</text>
+  <use href="#kous" x="150" y="424"/>
+  <text x="167" y="441" font-size="17" font-weight="700" fill="#1b232b" text-anchor="middle">*</text>
+
+  <!-- ================= sensor ================= -->
+  <rect x="14" y="452" width="372" height="96" rx="10" fill="#eef2f3" stroke="#1b232b" stroke-width="3"/>
+  <g font-size="15" font-weight="700" fill="#1b232b" text-anchor="middle">
+    <use href="#klem" x="60" y="480"/><text x="60" y="485">7</text>
+    <use href="#klem" x="92" y="480"/><text x="92" y="485">8</text>
+    <use href="#klem" x="124" y="480"/><text x="124" y="485">9</text>
+    <use href="#klem" x="220" y="480"/><text x="220" y="485">1</text>
+    <use href="#klem" x="252" y="480"/><text x="252" y="485">2</text>
+    <use href="#klem" x="284" y="480"/><text x="284" y="485">3</text>
+  </g>
+  <text x="28" y="532" font-size="20" font-weight="700" fill="#1b232b">Sensor</text>
+  <text x="372" y="532" font-size="15" fill="#56626d" text-anchor="end">aansluitkast OPTIFLUX</text>
+
+  <!-- legenda -->
+  <text x="20" y="582" font-size="15" fill="#1b232b"><tspan font-weight="700">**</tspan>  converterzijde: afscherming geïsoleerd</text>
+  <text x="20" y="606" font-size="15" fill="#1b232b"><tspan font-weight="700">*</tspan>  sensorzijde: afscherming met zadelklem aan aarde</text>
+  <text x="20" y="630" font-size="15" fill="#56626d">Stippellijn = afscherming van de kabel</text>
+</svg>
