@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fluke 789 ProcessMeter: lus testen · Veldhandboek</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="balk"><div class="wrap"><a class="thuis" href="../index.html">Veldhandboek</a></div></nav>
+
+  <main class="wrap">
+    <header class="kopblok">
+      <h1>Fluke 789 ProcessMeter: lus testen</h1>
+      <p class="keten">4-20 mA meten, zelf stroom sturen, een transmitter nabootsen of een losse transmitter voeden.</p>
+
+      <div class="status">
+        <strong>Gemaakt op basis van de handleiding.</strong>
+        Nog niet gecontroleerd op een eigen exemplaar. Controleer bij ontvangst de opdruk van de bussen en de namen van de knoppen, en pas deze pagina aan waar nodig.
+      </div>
+
+      <details class="inhoud">
+        <summary>Inhoud</summary>
+        <ol>
+          <li><a href="#welke">Welke stand wanneer</a></li>
+          <li><a href="#veiligheid">Let op</a></li>
+          <li><a href="#knoppen">Knoppen bij bron en simulatie</a></li>
+          <li><a href="#ingang">Recept: ingang van scheider of RTU testen</a></li>
+          <li><a href="#uitgang">Recept: actieve uitgang meten</a></li>
+          <li><a href="#transmitter">Recept: losse 2-draads transmitter testen</a></li>
+          <li><a href="#simulate">Recept: transmitter vervangen in een gevoede lus</a></li>
+          <li><a href="#bronnen">Bronnen</a></li>
+        </ol>
+      </details>
+    </header>
+
+    <!-- ===================================================== -->
+    <h2 id="welke">Welke stand wanneer</h2>
+    <p>De vraag is steeds: <b>wie voedt de lus?</b> Daarop kies je de stand.</p>
+    <div class="tabel">
+      <table>
+        <tr><th>Situatie</th><th>Stand</th><th>Wat de meter doet</th></tr>
+        <tr>
+          <td>Je wilt een ingang testen die zelf geen lusvoeding heeft, zoals de ingang van een signaalscheider</td>
+          <td><b>Source</b><br><span class="lcd">OUTPUT</span>, SOURCE-bussen</td>
+          <td>Levert zelf spanning én stroom. Je kiest de stroom.</td>
+        </tr>
+        <tr>
+          <td>De lus heeft al een eigen voeding (bijv. 24 V uit de RTU) en je wilt de transmitter vervangen</td>
+          <td><b>Simulate</b><br><span class="lcd">OUTPUT</span>, SIMULATE-bussen</td>
+          <td>Gedraagt zich als een 2-draads transmitter. De externe voeding moet 15–48 V zijn.</td>
+        </tr>
+        <tr>
+          <td>Je wilt een losse 2-draads transmitter testen, buiten de installatie</td>
+          <td><b>Loop power</b><br><span class="lcd">mA LOOP POWER</span></td>
+          <td>Levert ca. 24 V aan de transmitter en meet de stroom die hij doorlaat.</td>
+        </tr>
+        <tr>
+          <td>Je wilt alleen meten</td>
+          <td><b>mA meten</b>, mA-bus</td>
+          <td>Meet stroom tot 30 mA, met tegelijk het percentage van het bereik.</td>
+        </tr>
+      </table>
+    </div>
+    <p>Het percentage op het display rekent met 4-20 mA of 0-20 mA. Welke van de twee, stel je in bij het aanzetten (zie handleiding). Controleer dat <b>4-20 mA</b> is gekozen.</p>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <ul>
+        <li><b>Source:</b> loop'un beslemesi yoksa. Alet hem besler hem akımı belirler. Örnek: sinyal ayırıcının girişine 12 mA vermek.</li>
+        <li><b>Simulate:</b> loop'un kendi beslemesi varsa (RTU'dan 24 V gibi). Alet sensörün yerine geçer.</li>
+        <li><b>Loop power:</b> 2 telli bir sensörü sistemden ayırıp tek başına beslemek ve akımını okumak için.</li>
+        <li>Ekrandaki yüzde 4-20 mA'e göre olmalı; ilk açışta kontrol et.</li>
+      </ul>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="veiligheid">Let op</h2>
+    <div class="gevaar">
+      <strong>Voordat je aansluit</strong>
+      <ul>
+        <li>Zet de draaiknop <b>eerst</b> op een mA-uitgangsstand en sluit dan pas aan. Anders kan er tot 35 mA gaan lopen.</li>
+        <li>Nooit <b>Source</b> op een lus die al een bron heeft. Maak eerst de oorspronkelijke bron, zoals de draden van de flowmeter, los. Twee actieve bronnen in één lus werken tegen elkaar in.</li>
+        <li>Meld het de klant of de centrale. Zolang jij stuurt, zien zij jouw waarde en niet de echte.</li>
+        <li>Of iets veilig is om aan te raken, bepaal je met een spanningsmeting, niet met een stroommeting.</li>
+        <li>Zekering: alleen 440 mA, 1000 V snel (Fluke 943121).</li>
+      </ul>
+    </div>
+
+    <!-- ===================================================== -->
+    <h2 id="knoppen">Knoppen bij bron en simulatie</h2>
+    <div class="tabel">
+      <table>
+        <tr><th>Knop</th><th>Effect</th></tr>
+        <tr><td>Span check 0 % / 100 %</td><td>Direct naar 4 mA of naar 20 mA</td></tr>
+        <tr><td>% STEP</td><td>Stappen van 25 %: 4, 8, 12, 16, 20 mA</td></tr>
+        <tr><td>COARSE</td><td>Fijnregelen in stappen van 0,1 mA</td></tr>
+        <tr><td>FINE</td><td>Fijnregelen in stappen van 0,001 mA</td></tr>
+        <tr><td>Rampstand + blauwe knop</td><td>Automatisch op en neer: langzaam of snel, vloeiend of in stappen van 25 %</td></tr>
+      </table>
+    </div>
+    <p>Streepjes op het display in de bronstand: de belasting is te hoog of de lusspanning te laag. De bron haalt maximaal 28 V bij een goede batterij.</p>
+
+    <!-- ===================================================== -->
+    <h2 id="ingang">Recept: ingang van scheider of RTU testen</h2>
+    <p>Voorbeeld: klant ziet geen signaal, en je wilt weten of alles vanaf de signaalscheider goed is. Dit is dezelfde test die de klant met zijn simulator deed.</p>
+    <ol class="stappen">
+      <li><h3>Bron loskoppelen</h3><p>Meld het de klant. Maak de draden van de flowmeter los van de ingang van de signaalscheider.</p></li>
+      <li><h3>Meter klaarzetten</h3><p>Draaiknop op <span class="lcd">OUTPUT</span> (vaste mA). Snoeren in de <b>SOURCE + / −</b> bussen.</p></li>
+      <li><h3>Aansluiten</h3><p>SOURCE + op de + van de ingang, SOURCE − op de −. Zie <a href="klantsignaal-4-20ma.html#keten">meetpunt M2</a>.</p></li>
+      <li>
+        <h3>Stappen doorlopen</h3>
+        <p>0 %-knop, daarna steeds % STEP. Vraag de klant of kijk op de RTU wat er aankomt.</p>
+        <div class="tabel">
+          <table>
+            <tr><th>Stroom</th><th>Bereik</th><th>Bij 0–250 m³/h</th></tr>
+            <tr><td>4 mA</td><td>0 %</td><td>0 m³/h</td></tr>
+            <tr><td>8 mA</td><td>25 %</td><td>62,5 m³/h</td></tr>
+            <tr><td>12 mA</td><td>50 %</td><td>125 m³/h</td></tr>
+            <tr><td>16 mA</td><td>75 %</td><td>187,5 m³/h</td></tr>
+            <tr><td>20 mA</td><td>100 %</td><td>250 m³/h</td></tr>
+          </table>
+        </div>
+        <div class="uitkomst">
+          <p><b>Klant ziet de juiste waarden:</b> alles vanaf de scheider is goed. Het probleem zit bij de flowmeter of de kabel ernaartoe.</p>
+          <p><b>Klant ziet niets of iets anders:</b> zoek in de scheider, de klemmenstrook of bij de klant (meetbereik).</p>
+        </div>
+      </li>
+      <li><h3>Terugzetten</h3><p>Meter los, draden van de flowmeter terug en vastzetten. Controleer met de meetstand dat het echte signaal weer aankomt.</p></li>
+    </ol>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>Sayacın tellerini ayırıcının girişinden sök, 789'u SOURCE'a al ve girişe bağla. 4, 8, 12, 16, 20 mA ver; müşteri 0, %25, %50, %75, %100 görmeli. Görüyorsa ayırıcıdan sonrası sağlam, sorun sayaçta ya da kabloda. Bitince telleri geri tak.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="uitgang">Recept: actieve uitgang meten</h2>
+    <p>Voorbeeld: komt er stroom uit klem A / A- van de flowmeter?</p>
+    <ol class="stappen">
+      <li><h3>Meetstand</h3><p>Draaiknop op de mA-meetstand, rood snoer in de <b>mA</b>-bus (tot 30 mA), zwart in <b>COM</b>.</p></li>
+      <li><h3>In serie of direct</h3><p>In de lus: één draad los en de meter ertussen. Of draden los en de meter direct op A en A-: een actieve uitgang begrenst zelf de stroom. Zie <a href="klantsignaal-4-20ma.html#stappen">klantsignaal, stap 7</a>.</p></li>
+      <li><h3>Aflezen</h3><p>Je ziet de stroom én het percentage. Vergelijk het percentage met debiet ÷ bereik op het display van de flowmeter.</p></li>
+    </ol>
+
+    <!-- ===================================================== -->
+    <h2 id="transmitter">Recept: losse 2-draads transmitter testen</h2>
+    <p>Voorbeeld: een drukopnemer geeft een rare waarde. Ligt het aan de opnemer of aan de installatie?</p>
+    <ol class="stappen">
+      <li><h3>Losmaken</h3><p>Maak de transmitter los van de installatie (centrale informeren).</p></li>
+      <li><h3>Meter klaarzetten</h3><p>Draaiknop op <span class="lcd">mA LOOP POWER</span>. Volgens de handleiding staat er ca. 24 V tussen de <b>A</b>- en de <b>mA</b>-bus. Controleer de aansluitfiguur in de handleiding.</p></li>
+      <li><h3>Aansluiten en aflezen</h3><p>Transmitter in serie aansluiten. Lees de stroom af en vergelijk met wat je verwacht. Een drukopnemer met bereik vanaf 0 bar aan de buitenlucht hoort rond 4 mA te geven.</p></li>
+      <li><h3>Bij HART</h3><p>Met de blauwe knop schakel je in deze stand een weerstand van 250 Ω in de lus. Op het display staan dan „250 Ω” en „HART”.</p></li>
+    </ol>
+    <div class="uitkomst">
+      <p><b>Los van de installatie goed:</b> de fout zit in de installatie (bekabeling, voeding, ingang).</p>
+      <p><b>Ook los fout:</b> de transmitter zelf.</p>
+    </div>
+
+    <details class="tr">
+      <summary>Kısaca (Türkçe)</summary>
+      <p>Sensörü sistemden ayır, 789'u LOOP POWER'a al: alet sensörü 24 V ile besler ve akımı gösterir. Tek başına doğru çalışıyorsa sorun sistemde, çalışmıyorsa sensörde.</p>
+    </details>
+
+    <!-- ===================================================== -->
+    <h2 id="simulate">Recept: transmitter vervangen in een gevoede lus</h2>
+    <p>Voorbeeld: de RTU voedt de lus met 24 V en je wilt de ingang van de RTU controleren zonder de echte transmitter.</p>
+    <ol class="stappen">
+      <li><h3>Transmitter los</h3><p>Maak de transmitter los. De voeding van de RTU blijft aan.</p></li>
+      <li><h3>Meter klaarzetten</h3><p>Draaiknop eerst op <span class="lcd">OUTPUT</span>, snoeren in de <b>SIMULATE + / −</b> bussen.</p></li>
+      <li><h3>Op de plek van de transmitter</h3><p>Sluit de meter aan waar de transmitter zat. De externe voeding moet tussen 15 en 48 V zijn.</p></li>
+      <li><h3>Stappen doorlopen</h3><p>Zelfde als hierboven: 4, 8, 12, 16, 20 mA en vergelijken met wat de RTU of de centrale ziet.</p></li>
+    </ol>
+
+    <!-- ===================================================== -->
+    <h2 id="bronnen">Bronnen</h2>
+    <ul>
+      <li><a href="https://core.instrumart.com/assets/787B-Manual.pdf">Fluke 789/787B ProcessMeter gebruikershandleiding (PDF)</a></li>
+      <li><a href="https://www.fluke.com/en-us/learn/blog/calibration/fluke-787-vs-789">Fluke: verschil 787B en 789</a></li>
+    </ul>
+
+    <p class="voet"><a href="../index.html">Terug naar het overzicht</a></p>
+  </main>
+</body>
+</html>

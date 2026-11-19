@@ -8,7 +8,17 @@ const PAGINAS = [
       "Klant ontvangt geen of een verkeerd 4-20 mA signaal. Meten met de Fluke van flowmeter (KROHNE UFC 400) via signaalscheider tot de klant, met simulatie en menupaden.",
     labels: ["KROHNE UFC 400", "4-20 mA", "Signaalscheider", "Fluke 179"],
     woorden:
-      "klantsignaal klant signaal storing zoeken testen meten stroom stroomuitgang analoog flowmeter debietmeter optisonic 3400 krohne ufc400 signaalscheider scheidingsversterker phoenix mini mcr ui 2i fluke 179 multimeter serie simulatie simulation current out actief passief geen 0 ma draadbreuk meetbereik range dip schakelaar",
+      "klantsignaal klant signaal storing zoeken testen meten stroom stroomuitgang analoog flowmeter debietmeter optisonic 3400 krohne ufc400 signaalscheider scheidingsversterker phoenix mini mcr ui 2i fluke 179 multimeter serie simulatie simulation current out actief passief geen 0 ma draadbreuk meetbereik range dip schakelaar 789 processmeter",
+  },
+  {
+    titel: "Fluke 789 ProcessMeter: lus testen",
+    soort: "Procedure",
+    url: "procedures/fluke-789-processmeter.html",
+    samenvatting:
+      "Welke stand wanneer: Source, Simulate, Loop power of meten. Met recepten voor het testen van een scheider- of RTU-ingang en van een losse 2-draads transmitter.",
+    labels: ["Fluke 789", "4-20 mA", "Source", "Simulate", "Loop power"],
+    woorden:
+      "fluke 789 787 787b processmeter procesmeter procesmtr meettang loop calibrator lus kalibrator bron sturen source simulate simuleren simulatie lusvoeding loop power 24 v hart 250 ohm span check 25 % step coarse fine ramp transmitter drukopnemer druksensor 2-draads tweedraads rtu ingang testen signaalscheider ijken",
   },
   {
     titel: "mA ↔ debiet rekenmachine",
