@@ -299,6 +299,28 @@ th { font-family: var(--kop); font-weight: 600; font-size: 1.05rem; border-botto
 .reken .melding { margin-top: 0.5rem; color: var(--gevaar); font-weight: 600; min-height: 1.5em; }
 .reken .hint { color: var(--grijs); font-size: 0.95rem; }
 
+/* Copilot */
+.copilot { margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; }
+.copilot-alles { display: block; margin: 0 0 2rem; }
+.copilot-alles .knoppen { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.75rem; }
+.knop {
+  display: inline-block;
+  font-family: var(--kop);
+  font-weight: 600;
+  font-size: 1.08rem;
+  line-height: 1.2;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--inkt);
+  border-radius: 6px;
+  background: var(--papier);
+  color: var(--inkt);
+  text-decoration: none;
+  cursor: pointer;
+}
+.knop:hover { background: var(--vlak); }
+.knop[disabled], .knop[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+.melding-copilot { color: var(--grijs); font-size: 0.98rem; }
+
 /* voet */
 .voet { margin: 4rem 0 2rem; padding-top: 1rem; border-top: 1px solid var(--lijn); color: var(--grijs); font-size: 0.95rem; }
 
